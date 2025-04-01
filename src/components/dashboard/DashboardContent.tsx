@@ -9,7 +9,7 @@ export default function DashboardContent() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <div className="text-sm text-neutral-500">My Workspace</div>
-          <h1 className="text-3xl font-bold">Good morning, Alam</h1>
+          <h1 className="text-3xl font-bold">call like never before</h1>
         </div>
 
         <div className="flex gap-3">
