@@ -74,9 +74,13 @@ Run the **TwilioCallHandler.java** Spring Boot application.
 
 4. After saving, copy the **Webhook Secret** generated.
 
-5. Open the `application.properties` file in the Kafka module and **update the webhook secret**:
-   ```
-   webhook.secret=your_generated_webhook_secret
+5. Open the `application.properties` file in the Kafka module and **update the following keys**:
+
+   ```properties
+   server.port=8080
+   elevenlabs.webhook.secret=your_generated_webhook_secret
+   elevenlabs.api.key=your_elevenlabs_api_key
+   elevenlabs.agent.id=your_elevenlabs_agent_id
    ```
 
 ---
