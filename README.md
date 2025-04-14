@@ -146,4 +146,4 @@ The full pipeline from call → AI agent → webhook → Kafka → MongoDB → f
 
 ## 📞 Contact
 
-For any questions or setup issues, reach out to [anmolx.work@gmail.com].
+For any questions or setup issues, reach out to [anmolx.work@gmail.com] or  [gulshandubbani2003@gmail.com]
