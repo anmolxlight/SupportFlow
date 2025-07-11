@@ -14,6 +14,18 @@ type Document = {
   updatedAt: string;
 };
 
+type ApiDocument = {
+  id: string;
+  name: string;
+  metadata: {
+    size_bytes: number;
+    last_updated_at_unix_secs: number;
+  };
+  access_info: {
+    creator_name: string;
+  };
+};
+
 const formatFileSize = (bytes: number) => (bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} kB`);
 
 const formatTimestamp = (unixSeconds: number) => {
@@ -41,7 +53,7 @@ export default function KnowledgeBaseContent() {
         if (!response.ok) throw new Error(`Failed to fetch data: ${response.statusText}`);
 
         const data = await response.json();
-        setDocuments(data.documents.map((doc: any) => ({
+        setDocuments(data.documents.map((doc: ApiDocument) => ({
           id: doc.id,
           name: doc.name,
           size: formatFileSize(doc.metadata.size_bytes),
