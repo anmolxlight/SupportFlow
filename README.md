@@ -1,180 +1,149 @@
-# SupportFlow - Conversational AI Dashboard
+# SupportFlow
 
-A modern, mobile-optimized dashboard for AI-powered customer support management.
-
-## Features
-
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices
-- **Agent Management**: Create and manage AI agents with custom settings
-- **Call History**: View detailed conversation logs and analytics
-- **Knowledge Base**: Manage AI agent knowledge and responses
-- **Phone Numbers**: Configure phone number integrations
-- **Real-time Analytics**: Dashboard with call metrics and performance data
-
-## Mobile Optimization
-
-This application has been fully optimized for mobile devices with:
-
-### 📱 Mobile-First Design
-- Responsive layouts that adapt from mobile to desktop
-- Touch-friendly interactions with minimum 44px touch targets
-- Optimized typography and spacing for mobile screens
-- Hardware-accelerated animations and smooth scrolling
-
-### 🎯 Mobile Navigation
-- Collapsible hamburger menu on mobile devices
-- Slide-out navigation with overlay for mobile
-- Desktop sidebar navigation for larger screens
-- Breadcrumb navigation for better UX
-
-### 📊 Responsive Components
-- **Dashboard**: 4-column grid on desktop, stacked on mobile
-- **Agent Management**: List/detail view with mobile-optimized navigation
-- **Call History**: Card-based layout for mobile, table layout for desktop
-- **Charts**: Horizontal scrolling and responsive scaling
-- **Forms**: Mobile-optimized input fields with proper keyboard handling
-
-### � Technical Optimizations
-- **Viewport Configuration**: Proper mobile viewport settings
-- **Touch Optimization**: Disabled unwanted zoom and tap highlights
-- **Performance**: Optimized for 60fps on mobile devices
-- **iOS Compatibility**: Handles iPhone notch and safe areas
-- **PWA Ready**: Can be installed as a mobile app
-
-## Getting Started
-
-### Prerequisites
-- Node.js 18.0 or higher
-- npm or yarn package manager
-
-### Installation
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd supportflow-dashboard
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-### Development
-
-```bash
-# Start development server with hot reload
-npm run dev
-
-# The app will be available at http://localhost:3000
-```
-
-## Technology Stack
-
-- **Framework**: Next.js 15 with App Router
-- **Styling**: Tailwind CSS with custom mobile-first breakpoints
-- **UI Components**: shadcn/ui with Radix UI primitives
-- **Icons**: Lucide React
-- **Language**: TypeScript for type safety
-- **Build Tool**: Next.js built-in bundler
-
-## Mobile Testing
-
-The application has been optimized and tested for:
-
-- **iOS Safari**: 12.0+
-- **Android Chrome**: 80+
-- **Samsung Internet**: 10.0+
-- **Mobile Firefox**: 68+
-
-### Testing Guidelines
-
-1. Test on various device sizes (320px to 768px width)
-2. Verify touch targets are at least 44px
-3. Check horizontal scrolling on narrow screens
-4. Validate text readability at different zoom levels
-5. Test orientation changes
-6. Verify iOS Safari compatibility
-
-## Performance
-
-- **First Contentful Paint**: < 2.5s on 3G
-- **Largest Contentful Paint**: < 4.0s on 3G
-- **Cumulative Layout Shift**: < 0.1
-- **Touch Responsiveness**: < 100ms
-
-## Project Structure
-
-```
-src/
-├── app/                    # Next.js App Router
-│   ├── (dashboard)/       # Dashboard layout group
-│   ├── globals.css        # Global styles with mobile optimizations
-│   └── layout.tsx         # Root layout with mobile viewport
-├── components/
-│   ├── ui/                # Reusable UI components
-│   ├── layout/            # Layout components (Sidebar, MobileNavigation)
-│   ├── dashboard/         # Dashboard-specific components
-│   ├── agents/            # Agent management components
-│   ├── call-history/      # Call history components
-│   ├── knowledge-base/    # Knowledge base components
-│   └── phone-numbers/     # Phone number management components
-└── lib/                   # Utility functions
-```
-
-## Configuration
-
-### Tailwind CSS
-The project uses custom Tailwind configuration with mobile-first breakpoints:
-
-```typescript
-screens: {
-  'xs': '475px',
-  'sm': '640px',
-  'md': '768px',
-  'lg': '1024px',
-  'xl': '1280px',
-  '2xl': '1536px',
-  // Mobile-first breakpoints
-  'mobile': {'max': '767px'},
-  'tablet': {'min': '768px', 'max': '1023px'},
-  'desktop': {'min': '1024px'},
-}
-```
-
-### Mobile Viewport
-```typescript
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-};
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test on multiple devices
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For support and questions, please open an issue on the GitHub repository.
+**SupportFlow** is a conversational AI customer support system integrated with Twilio and Eleven Labs APIs, using Kafka and MongoDB for event streaming and backend storage. This repo contains the **frontend** of the project.
 
 ---
 
-**Note**: This application is optimized for mobile devices and provides a seamless experience across all screen sizes. The mobile-first approach ensures excellent performance and usability on smartphones and tablets.
+## 🔗 Project Structure
+
+Our project is split across three repositories:
+
+1. **Frontend (this repo)** – [`SupportFlow`](https://github.com/gulshandubbani2003/SupportFlow)
+2. **Backend (Call History Service)** – [`Supportflow-backend`](https://github.com/anmolxlight/Supportflow-javabackend)
+3. **Kafka Module** – [`Supportflow-kafkamodule`](https://github.com/gulshandubbani2003/Supportflow-Kakfamodule)
+
+---
+
+## 🚀 Setup Instructions
+
+Follow these steps in **this exact order** to get the project up and running locally:
+
+---
+
+### 🧠 Step 1: Start Kafka and Zookeeper
+
+```bash
+cd C:\kafka\bin\windows
+java -cp "C:\kafka\libs\*" org.apache.zookeeper.server.quorum.QuorumPeerMain C:\kafka\config\zookeeper.properties
+```
+
+```bash
+cd C:\kafka\bin\windows
+kafka-server-start.bat ..\..\config\server.properties
+```
+
+---
+
+### 🌐 Step 2: Start Ngrok
+
+```bash
+cd C:\Users\91727\Downloads\ngrok-v3-stable-windows-amd64
+ngrok.exe http 8080
+```
+
+Keep the terminal open and copy the forwarded `https` URL.
+
+---
+
+### 📡 Step 3: Run Kafka Consumer Module
+
+Clone and open the [`Supportflow-kafkamodule`](https://github.com/yourusername/Supportflow-kafkamodule) repo in Eclipse IDE.
+
+Run the **KafkaConsumer.java** file as a Java application.
+
+---
+
+### 📞 Step 4: Run Twilio Call Handler (Spring Boot)
+
+Open the [`Supportflow-kafkamodule`](https://github.com/gulshandubbani2003/Supportflow-Kakfamodule) repo in Eclipse.
+
+Run the **TwilioCallHandler.java** Spring Boot application.
+
+---
+
+### 🔗 Step 5: Configure Webhook in Eleven Labs
+
+1. Go to the Eleven Labs Conversational AI dashboard
+2. Navigate to **Post-call Webhook Settings**
+3. Paste the ngrok URL copied earlier and add `/webhook` at the end
+
+   Example:
+   ```
+   https://<your-ngrok-subdomain>.ngrok.io/webhook
+   ```
+
+4. After saving, copy the **Webhook Secret** generated.
+
+5. Open the `application.properties` file in the Kafka module and **update the following keys**:
+
+   ```properties
+   server.port=8080
+   elevenlabs.webhook.secret=your_generated_webhook_secret
+   elevenlabs.api.key=your_elevenlabs_api_key
+   elevenlabs.agent.id=your_elevenlabs_agent_id
+   ```
+
+---
+
+### 🧾 Step 6: Start Call History Backend
+
+Clone the [`Supportflow-backend`](https://github.com/anmolxlight/Supportflow-javabackend) repo.
+
+Run the following command to start the Spring Boot application:
+
+```bash
+./mvnw spring-boot:run
+```
+
+This will start the backend service connected to MongoDB for storing and retrieving call history.
+
+---
+
+### 💻 Step 7: Start Frontend (This Repo)
+
+Clone this repo [`SupportFlow`](https://github.com/gulshandubbani2003/SupportFlow).
+
+Install dependencies and run the dev server:
+
+```bash
+npm install
+npm run dev
+```
+
+Your frontend is now live at [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🧪 Testing the Live Project
+
+1. **Buy a Twilio Testing Number**
+2. Link it with Eleven Labs
+3. Add sample knowledgebase & agent setup
+4. Make a test call to interact with the AI agent
+
+The full pipeline from call → AI agent → webhook → Kafka → MongoDB → frontend is now active.
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend**: Typescript
+- **Backend**: Spring Boot + MongoDB
+- **Streaming**: Apache Kafka
+- **Dev Tools**: Eclipse, VS Code, Ngrok
+- **Voice API**: Twilio
+- **AI Voice**: Eleven Labs
+
+---
+
+## 📂 Repository Links
+
+- [SupportFlow (Frontend)](https://github.com/gulshandubbani2003/SupportFlow)
+- [Supportflow-backend (Call History Service)](https://github.com/anmolxlight/Supportflow-javabackend)
+- [Supportflow-kafkamodule (Kafka Streaming)](https://github.com/gulshandubbani2003/Supportflow-Kakfamodule)
+
+---
+
+## 📞 Contact
+
+For any questions or setup issues, reach out to [anmolx.work@gmail.com] or  [gulshandubbani2003@gmail.com]
