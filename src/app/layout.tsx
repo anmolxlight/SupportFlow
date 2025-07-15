@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +33,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
-      <ClientBody>
-        {children}
-      </ClientBody>
+      <UserProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClientBody>
+            {children}
+          </ClientBody>
+        </ThemeProvider>
+      </UserProvider>
     </html>
   );
 }
