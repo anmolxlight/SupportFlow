@@ -1,6 +1,6 @@
 "use client"
 
-import { useUser } from '@auth0/nextjs-auth0/client';
+import { useUser } from '@/components/auth/MockAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -15,7 +15,8 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (!isLoading && !user && !error) {
-      router.push('/api/auth/login');
+      // Mock auth - in real implementation this would redirect to Auth0
+      router.push('/dashboard');
     }
   }, [user, isLoading, error, router]);
 

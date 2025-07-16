@@ -42,12 +42,10 @@ export default function ClientBody({
   // Add theme-based background gradient
   const backgroundVariants = {
     light: {
-      background: "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
-      transition: { duration: 0.5, ease: "easeInOut" }
+      background: "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)"
     },
     dark: {
-      background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-      transition: { duration: 0.5, ease: "easeInOut" }
+      background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)"
     }
   };
 
@@ -72,6 +70,7 @@ export default function ClientBody({
         initial={false}
         animate={resolvedTheme === "dark" ? "dark" : "light"}
         variants={backgroundVariants}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         {/* Background pattern overlay */}
         <div className="fixed inset-0 opacity-30 dark:opacity-20 pointer-events-none">
